@@ -1,20 +1,21 @@
-package engeto.projekt.ja.OrderManager;
+package engeto.projekt.ja.RestaurantManager;
 
 import engeto.projekt.ja.CookBook.Dish;
+import engeto.projekt.ja.OrderManager.OrderManager;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RestaurantManager {
 
-    private List<OrderManager> orders;
-    private List<Dish> menu;
+    private final List<OrderManager> orders;
 
-    public RestaurantManager(List<OrderManager> orders, List<Dish> menu){
+    public RestaurantManager(List<OrderManager> orders){
         this.orders = orders;
-        this.menu = menu;
     }
 
     public int getNumberOfInProgressOrders(){
@@ -27,9 +28,9 @@ public class RestaurantManager {
         return count;
     }
     public List<OrderManager> getOrdersSortByTime(){
-        orders.sort((o1, o2) -> o1.getOrderedTime().compareTo
-                (o2.getOrderedTime()));
-        return orders;
+        return orders.stream()
+                .sorted(Comparator.comparing(OrderManager::getOrderedTime))
+                .collect(Collectors.toList());
     }
     public double getAverageProcessingTimeInMinutes(){
         long totalProcessingTime = 0;
