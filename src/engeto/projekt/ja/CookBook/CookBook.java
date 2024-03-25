@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CookBook {
 
-    private List<Dish> dishes;
+    private final List<Dish> dishes;
 
     public CookBook(){
         this.dishes = new ArrayList<>();

@@ -128,10 +128,12 @@ public class DataManager {
                 String[] parts = line.split("; ");
                 if (parts.length == 6) {
                     Dish dish = findDishByTitle(dishes, parts[1]);
-                    OrderManager order = getOrderManager(parts, tableNumber, dish);
-                    orders.add(order);
-                } else {
-                    logger.log(Level.WARNING, "Jídlo s názvem " + parts[1] + " nebylo nalezeno.");
+                    if (dish != null) {
+                        OrderManager order = getOrderManager(parts, tableNumber, dish);
+                        orders.add(order);
+                    } else {
+                        logger.log(Level.WARNING, "Jídlo s názvem " + parts[1] + " nebylo nalezeno.");
+                    }
                 }
             }
         } catch (IOException e) {

@@ -4,16 +4,26 @@ import java.math.BigDecimal;
 
 public class Dish {
 
+    private int index;
     private String title;
     private BigDecimal price;
     private Integer preparationTime;
     private String image;
 
     public Dish(String title, BigDecimal price, Integer preparationTime, String image) {
+        this.index = index;
         this.title = title;
         this.price = price;
         this.preparationTime = preparationTime > 0 ? preparationTime : 1;
         this.image = image != null && !image.isEmpty() ? image : "blank.png";
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getTitle() {
