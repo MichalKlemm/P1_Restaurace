@@ -19,7 +19,7 @@ public class Main {
         List<OrderManager> orders = dataManager.loadOrders(dishes, 10);
 
         prepareTestData(dishes, orders);
-        printManagementInfo(orders);
+        printManagementInfo(orders.get(0).getTableNumber(), orders);
 
         dataManager.saveDishes(dishes);
         dataManager.saveOrders(orders);
@@ -69,9 +69,9 @@ public class Main {
         return totalBill;
     }
 
-    private void printManagementInfo(List<OrderManager> orders) {
-        BigDecimal totalBillForTable15 = calculateTotalBillForTable(15, orders);
-        System.out.println("Celková cena objednávky pro stůl č. 15: " + totalBillForTable15 + " Kč");
+    private void printManagementInfo(int tableNumber, List<OrderManager> orders) {
+        BigDecimal totalBillForTable = calculateTotalBillForTable(tableNumber, orders);
+        System.out.println("Celková cena objednávky pro stůl č. " + tableNumber + ": " + totalBillForTable + " Kč");
         System.out.println();
 
         RestaurantManager restaurantManager = new RestaurantManager(orders);
