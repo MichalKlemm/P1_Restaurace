@@ -55,7 +55,7 @@ public class DataManager {
         }
     }
 
-    public static List<Dish> loadDishes() {
+    public List<Dish> loadDishes() {
         List<Dish> dishes = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(DISHES_FILE))) {
             String line;
@@ -108,7 +108,7 @@ public class DataManager {
             logger.log(Level.SEVERE, "Error při ukládání objednávek do souboru !", e);
         }
     }
-    private static OrderManager getOrderManager(String[] parts, int tableNumber, Dish dish) {
+    private OrderManager getOrderManager(String[] parts, int tableNumber, Dish dish) {
         int quantity = Integer.parseInt(parts[2]);
         LocalDateTime orderedTime = LocalDateTime.parse(parts[3]);
         LocalDateTime fulfilmentTime = parts[4].equals("null") ? null : LocalDateTime.parse(parts[4]);
@@ -120,7 +120,7 @@ public class DataManager {
         return order;
     }
 
-    public static List<OrderManager> loadOrders(List<Dish> dishes, int tableNumber) {
+    public List<OrderManager> loadOrders(List<Dish> dishes, int tableNumber) {
         List<OrderManager> orders = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(ORDERS_FILE))) {
             String line;
@@ -143,7 +143,7 @@ public class DataManager {
     }
 
 
-    private static Dish findDishByTitle(List<Dish> dishes, String title) {
+    private Dish findDishByTitle(List<Dish> dishes, String title) {
         for (Dish dish : dishes) {
             if (dish.getTitle().equals(title)) {
                 return dish;
