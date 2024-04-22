@@ -85,11 +85,11 @@ public class Main {
             System.out.println("- " + dish.getTitle());
         }
 
-        String tableOrders15 = restaurantManager.exportOrdersForTable(15);
-        System.out.println("Seznam objednávek pro stůl č. 15:\n" + tableOrders15);
+        String tableOrders15 = restaurantManager.exportOrdersForTable(tableNumber);
+        System.out.println("Seznam objednávek pro stůl č. "+ tableNumber + ":\n" + tableOrders15);
 
-        String tableOrders2 = restaurantManager.exportOrdersForTable(2);
-        System.out.println("Seznam objednávek pro stůl č. 2:\n" + tableOrders2);
+        String tableOrders2 = restaurantManager.exportOrdersForTable(tableNumber);
+        System.out.println("Seznam objednávek pro stůl č. "+ tableNumber + ":\n" + tableOrders2);
 
         double avgProcessingTime = restaurantManager.getAverageProcessingTimeInMinutes();
         System.out.println("Průměrná doba zpracování objednávek: " + avgProcessingTime + " minut");
