@@ -8,18 +8,24 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        DataManager.createFilesIfNeeded();
-        List<Dish> dishes = DataManager.loadDishes();
-        List<OrderManager> orders = DataManager.loadOrders(dishes, 10);
+        Main app = new Main();
+        app.start();
+    }
+    public void start(){
+        DataManager dataManager = new DataManager();
+        dataManager.createFilesIfNeeded();
+
+        List<Dish> dishes = dataManager.loadDishes();
+        List<OrderManager> orders = dataManager.loadOrders(dishes, 10);
 
         prepareTestData(dishes, orders);
         printManagementInfo(orders);
 
-        DataManager.saveDishes(dishes);
-        DataManager.saveOrders(orders);
+        dataManager.saveDishes(dishes);
+        dataManager.saveOrders(orders);
     }
 
-    private static void prepareTestData(List<Dish> dishes, List<OrderManager> orders) {
+    private void prepareTestData(List<Dish> dishes, List<OrderManager> orders) {
         Dish dish1 = new Dish("Kuřecí řízek obalovaný 150g", BigDecimal.valueOf(120),
                 150, "kuřecirizek.jpg");
         Dish dish2 = new Dish("Hranolky 150g", BigDecimal.valueOf(50),
@@ -53,7 +59,7 @@ public class Main {
         orders.add(order4);
     }
 
-    private static BigDecimal calculateTotalBillForTable(int tableNumber, List<OrderManager> orders) {
+    private BigDecimal calculateTotalBillForTable(int tableNumber, List<OrderManager> orders) {
         BigDecimal totalBill = BigDecimal.ZERO;
         for (OrderManager order : orders) {
             if (order.getTableNumber() == tableNumber) {
@@ -63,7 +69,7 @@ public class Main {
         return totalBill;
     }
 
-    private static void printManagementInfo(List<OrderManager> orders) {
+    private void printManagementInfo(List<OrderManager> orders) {
         BigDecimal totalBillForTable15 = calculateTotalBillForTable(15, orders);
         System.out.println("Celková cena objednávky pro stůl č. 15: " + totalBillForTable15 + " Kč");
         System.out.println();

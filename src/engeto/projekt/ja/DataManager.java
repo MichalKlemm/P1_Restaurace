@@ -17,7 +17,7 @@ public class DataManager {
     private static final String ORDERS_FILE = "orders.txt";
     private static final Logger logger = Logger.getLogger(DataManager.class.getName());
 
-    public static void createFilesIfNeeded(){
+    public void createFilesIfNeeded(){
         try {
             File dishFile = new File(DISHES_FILE);
             File ordersFile = new File(ORDERS_FILE);
@@ -43,7 +43,7 @@ public class DataManager {
         }
     }
 
-    public static void saveDishes(List<Dish> dishes){
+    public void saveDishes(List<Dish> dishes){
         try (PrintWriter writer = new PrintWriter(new FileWriter(DISHES_FILE))){
             for (Dish dish : dishes){
                 writer.println(dish.getTitle() + "; " + dish.getPrice() + "; "
@@ -97,7 +97,7 @@ public class DataManager {
         return dishes;
     }
 
-    public static void saveOrders(List<OrderManager> orders) {
+    public void saveOrders(List<OrderManager> orders) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ORDERS_FILE))) {
             for (OrderManager order : orders) {
                 writer.println(order.getTableNumber() + "; " + order.getDish().getTitle() + "; "
